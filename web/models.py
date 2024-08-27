@@ -12,7 +12,7 @@ class Departamento(models.Model):
         return f"Departamento {self.numero} - {self.metros_2} m²"
     
 class Extra(models.Model):
-    nombre = models.CharField(max_length=45, blank=False)
+    nombre = models.CharField(max_length=45, blank=False, unique=True)
     porcentaje = models.FloatField(blank=False)
 
     def __str__(self):

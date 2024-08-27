@@ -34,7 +34,7 @@ def index(request):
             'user': dpto.user,
             'ggcc': ggcc
         })
-
+        
         if start_date and end_date:
             try:
                 start = datetime.strptime(start_date_str, '%Y-%m-%d')
@@ -46,10 +46,11 @@ def index(request):
                     total_ggcc = total_months * sum(dpto['ggcc'] for dpto in departamentos_info)            
             except ValueError:
                 messages.error(request, 'Fechas no válidas.')
-        
+    ggcc_mensual = sum(dpto['ggcc'] for dpto in departamentos_info)
     context = {
         'dptos': departamentos_info,
         'total_ggcc' : total_ggcc,
+        'ggcc_mensual' : ggcc_mensual
     }
     
     return render(request, 'index.html', context)
@@ -82,6 +83,7 @@ def add_dpto(request):
             departamento = form.save(commit=False)
             departamento.user = request.user
             departamento.save()
+            form.save_m2m()
             messages.success(request, 'Departamento añadido correctamente.')
             return redirect('index')
     else:

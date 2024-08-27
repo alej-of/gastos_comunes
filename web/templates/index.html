@@ -56,7 +56,10 @@
             </tbody>
         </table>
     </div>
-    <div class="container text-end">
+    <div class="container text-center bg-danger card">
+        <h1 class="card-title text-white">GGCC MENSUAL : ${{ ggcc_mensual }}</h1>
+    </div>
+    <div class="container text-end my-3">
         <a href="{% url 'add_dpto' %}" class="btn btn-warning text-center">Agregar Departamento</a>
     </div>
 {% endblock %}
