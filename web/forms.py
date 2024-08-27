@@ -23,6 +23,9 @@ class ExtraForm(forms.ModelForm):
     class Meta:
         model = Extra
         fields = ['nombre', 'porcentaje']
+        widgets = {
+            'porcentaje': forms.NumberInput(attrs={'step': '0.01'}),
+        }
 
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
